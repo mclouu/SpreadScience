@@ -17,7 +17,7 @@ public class PageAdapter extends FragmentPagerAdapter {
 
     private String[] NamePager = {"NEWS", "TOP STORIES", "empty"};
 
-    public PageAdapter(FragmentManager fm, int[] colors) {
+    public PageAdapter(FragmentManager fm) {
         super(fm);
     }
 
