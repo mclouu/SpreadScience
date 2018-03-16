@@ -26,18 +26,17 @@ public class MainActivity extends AppCompatActivity {
     //-------------
 
     private void configureViewPagerAndTabs() {
-        // 1 - Get ViewPager from layout
+        //Get ViewPager from layout
         ViewPager pager = findViewById(R.id.activity_main_viewpager);
-        // 1 - Set Adapter PageAdapter and glue it together
-        pager.setAdapter(new PageAdapter(getSupportFragmentManager(), getResources().getIntArray(R.array.colorPagersViewPager)));
+        //Set Adapter PageAdapter and glue it together
+        pager.setAdapter(new PageAdapter(getSupportFragmentManager()));
 
-        // 2 - Get TabLayout from layout
+        //Get TabLayout from layout
         TabLayout tabs = findViewById(R.id.activity_main_tabs);
-        // 2 - Glue TabLayout and ViewPager together
+        //Glue TabLayout and ViewPager together
         tabs.setupWithViewPager(pager);
-        // 3 - Tabs have the same width
+        //Design purpose. Tabs have the same width
         tabs.setTabMode(TabLayout.MODE_FIXED);
-
     }
 
 
