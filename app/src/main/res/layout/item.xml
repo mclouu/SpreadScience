@@ -2,7 +2,11 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="380dp"
-    android:layout_margin="8dp">
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="3dp"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_alignParentTop="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/article_singe" />
+            android:background="@color/colorRose"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/title"
@@ -29,6 +33,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
