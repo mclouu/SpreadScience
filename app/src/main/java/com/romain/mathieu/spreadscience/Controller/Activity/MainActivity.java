@@ -11,16 +11,28 @@ import android.view.MenuItem;
 import com.romain.mathieu.spreadscience.R;
 import com.romain.mathieu.spreadscience.View.PageAdapter;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.activity_main_viewpager)
+    ViewPager pager;
+    @BindView(R.id.activity_main_tabs)
+    TabLayout tabs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
-        toolbar.setTitle("gddgdg");
+        toolbar.setTitle("toolBar");
 
         this.configureViewPagerAndTabs();
     }
@@ -32,12 +44,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void configureViewPagerAndTabs() {
         //Get ViewPager from layout
-        ViewPager pager = findViewById(R.id.activity_main_viewpager);
         //Set Adapter PageAdapter and glue it together
         pager.setAdapter(new PageAdapter(getSupportFragmentManager()));
 
         //Get TabLayout from layout
-        TabLayout tabs = findViewById(R.id.activity_main_tabs);
         //Glue TabLayout and ViewPager together
         tabs.setupWithViewPager(pager);
         //Design purpose. Tabs have the same width
