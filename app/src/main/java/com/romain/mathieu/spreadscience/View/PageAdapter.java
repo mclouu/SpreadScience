@@ -14,9 +14,6 @@ import com.romain.mathieu.spreadscience.Controller.Fragment.TopStoriesPageFragme
 
 public class PageAdapter extends FragmentPagerAdapter {
 
-
-    private String[] NamePager = {"NEWS", "TOP STORIES", "empty"};
-
     public PageAdapter(FragmentManager fm) {
         super(fm);
     }
