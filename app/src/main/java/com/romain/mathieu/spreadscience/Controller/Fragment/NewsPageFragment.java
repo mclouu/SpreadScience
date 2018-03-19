@@ -15,10 +15,16 @@ import com.romain.mathieu.spreadscience.View.MyAdapter;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class NewsPageFragment extends Fragment {
+
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
 
     public static ArrayList<CardViewData> cardViewData = new ArrayList<>();
 
@@ -36,17 +42,18 @@ public class NewsPageFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_news_page, container, false);
+        ButterKnife.bind(this, view);
 
         cardViewData.add(new CardViewData("Titre", "Content", R.drawable.article_singe));
 
 
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         LinearLayoutManager llm = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(llm);
 
 
         MyAdapter adapter = new MyAdapter(cardViewData);
         recyclerView.setAdapter(adapter);
+
 
         // Inflate the layout for this fragment
 
