@@ -5,10 +5,17 @@
     tools:context="com.romain.mathieu.spreadscience.Controller.Fragment.NewsPageFragment">
 
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/progressBar"
         android:layout_margin="8dp"
         tools:listitem="@layout/item">
 
