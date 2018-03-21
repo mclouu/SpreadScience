@@ -1,12 +1,9 @@
 package com.romain.mathieu.spreadscience.Model;
 
-import com.romain.mathieu.spreadscience.API.Post;
 
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
 /**
@@ -14,19 +11,14 @@ import retrofit2.http.GET;
  */
 
 public interface WordPressService {
+    MyConstant constant = new MyConstant();
 
-    @GET("wp-json/posts")
-    Call<List<Post>> getAllPost();
-
+    @GET("wp-json/wp/v2/posts")
+    Call<List<WPPostAPI>> getPostInfo();
     /// to make call to dynamic URL
     //  @GET
-    //  Call<List<WPPost>> getPostInfo(@Url String url);
+    //  Call<List<WPPostAPI>> getPostInfo(@Url String url);
     //
-
-    public static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://long-pixel.alwaysdata.net/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
 
 
 }
