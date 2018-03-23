@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +14,15 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.romain.mathieu.spreadscience.Model.CardData;
+import com.romain.mathieu.spreadscience.Model.RetrofitRequest;
 import com.romain.mathieu.spreadscience.Model.WPPostAPI;
 import com.romain.mathieu.spreadscience.Model.WordPressService;
 import com.romain.mathieu.spreadscience.R;
 import com.romain.mathieu.spreadscience.View.MyAdapter;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +30,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import static com.romain.mathieu.spreadscience.Model.WordPressService.constant;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -87,27 +89,11 @@ public class NewsPageFragment extends Fragment {
 
     public void getRetrofit() {
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(constant.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        WordPressService service = retrofit.create(WordPressService.class);
+        RetrofitRequest.getRetrofit();
+
+        WordPressService service = RetrofitRequest.retrofit.create(WordPressService.class);
         Call<List<WPPostAPI>> call = service.getPostInfo();
-
-        // to make call to dynamic URL
-
-        // String yourURL = yourURL.replace(BaseURL,"");
-        // Call<List<WPPostAPI>>  call = service.getPostInfo( yourURL);
-
-        /// to get only 6 post from your blog
-        // http://your-blog-url/wp-json/wp/v2/posts?per_page=2
-
-        // to get any specific blog post, use id of post
-        //  http://www.blueappsoftware.in/wp-json/wp/v2/posts/1179
-
-        // to get only title and id of specific
-        // http://www.blueappsoftware.in/android/wp-json/wp/v2/posts/1179?fields=id,title
 
 
         call.enqueue(new Callback<List<WPPostAPI>>() {
@@ -115,13 +101,27 @@ public class NewsPageFragment extends Fragment {
             public void onResponse(Call<List<WPPostAPI>> call, Response<List<WPPostAPI>> response) {
                 mListPost = response.body();
                 progressBar.setVisibility(View.GONE);
-                Log.e("URL image : ", response.body().get(1).getLinks().getWpFeaturedmedia().get(0).getHref());
+
+
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    JSONArray array = jsonObject.getJSONArray("post");
+                    JSONObject ob = array.getJSONObject(1);
+                    String image = String.valueOf(Html.fromHtml(ob.getString("thumbnail")));
+                    Log.e("Retrofit", "var array : " + array + " var ob : " + ob + "var image : " + image);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.e("catch", "error");
+                }
+
+
                 for (int i = 0; i < response.body().size(); i++) {
 
                     String tempdetails = response.body().get(i).getExcerpt().getRendered();
                     tempdetails = tempdetails.replace("<p>", "");
                     tempdetails = tempdetails.replace("</p>", "");
                     tempdetails = tempdetails.replace("[&hellip;]", "");
+
 
                     list.add(new CardData(response.body().get(i).getTitle().getRendered(), tempdetails, response.body().get(1).getLinks().getWpFeaturedmedia().get(0).getHref()));
 
