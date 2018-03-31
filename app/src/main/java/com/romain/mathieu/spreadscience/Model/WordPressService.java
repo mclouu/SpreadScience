@@ -1,6 +1,8 @@
 package com.romain.mathieu.spreadscience.Model;
 
 
+import com.romain.mathieu.spreadscience.Model.API.WPPostAPI;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -13,12 +15,9 @@ import retrofit2.http.GET;
 public interface WordPressService {
     MyConstant constant = new MyConstant();
 
-    @GET("wp-json/wp/v2/posts")
+    @GET("wp-json/wp/v2/posts?_embed")
     Call<List<WPPostAPI>> getPostInfo();
     /// to make call to dynamic URL
     //  @GET
     //  Call<List<WPPostAPI>> getPostInfo(@Url String url);
-    //
-
-
 }
