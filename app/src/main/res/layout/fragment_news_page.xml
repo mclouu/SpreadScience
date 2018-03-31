@@ -17,9 +17,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/progressBar"
         android:layout_margin="8dp"
-        tools:listitem="@layout/item">
-
-    </android.support.v7.widget.RecyclerView>
+        tools:listitem="@layout/item" />
 
 
 </RelativeLayout>
