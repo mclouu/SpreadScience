@@ -15,6 +15,8 @@ import com.romain.mathieu.spreadscience.R;
 
 import java.util.ArrayList;
 
+import static com.romain.mathieu.spreadscience.Controller.Fragment.NewsPageFragment.imageURL;
+
 /**
  * Created by romain on 17/03/2018.
  */
@@ -61,6 +63,7 @@ public class MyAdapter extends RecyclerView.Adapter {
         ((ImageTypeViewHolder) holder).subtitle.setText(Html.fromHtml(object.getSubtitle()));
 
         String url = object.getImageURL();
+
         Glide.with(context)
                 .load(url)
                 .into(((ImageTypeViewHolder) holder).imageView);
