@@ -1,11 +1,5 @@
 package com.romain.mathieu.spreadscience.Model;
 
-import android.widget.ProgressBar;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -17,23 +11,15 @@ import static com.romain.mathieu.spreadscience.Model.WordPressService.constant;
 
 public class RetrofitRequest {
 
-
-    private static ArrayList<CardData> list;
-    private static List<WPPostAPI> mListPost;
-    private static ProgressBar progressBar;
-
     public static Retrofit retrofit;
 
 
     public static void getRetrofit() {
 
-            retrofit = new Retrofit.Builder()
+        retrofit = new Retrofit.Builder()
                 .baseUrl(constant.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
-        WordPressService service = retrofit.create(WordPressService.class);
-        Call<List<WPPostAPI>> call = service.getPostInfo();
 
         // to make call to dynamic URL
 
