@@ -15,8 +15,6 @@ import com.romain.mathieu.spreadscience.R;
 
 import java.util.ArrayList;
 
-import static com.romain.mathieu.spreadscience.Controller.Fragment.NewsPageFragment.imageURL;
-
 /**
  * Created by romain on 17/03/2018.
  */
@@ -35,7 +33,7 @@ public class MyAdapter extends RecyclerView.Adapter {
     public static class ImageTypeViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextView title, subtitle;
+        TextView title, subtitle, date, category;
         ImageView imageView;
 
         ImageTypeViewHolder(View itemView) {
@@ -45,6 +43,8 @@ public class MyAdapter extends RecyclerView.Adapter {
             this.title = itemView.findViewById(R.id.title);
             this.subtitle = itemView.findViewById(R.id.content);
             this.imageView = itemView.findViewById(R.id.thumbnail);
+            this.date = itemView.findViewById(R.id.date);
+            this.category = itemView.findViewById(R.id.category);
         }
     }
 
@@ -61,6 +61,8 @@ public class MyAdapter extends RecyclerView.Adapter {
 
         ((ImageTypeViewHolder) holder).title.setText(Html.fromHtml(object.getTitle()));
         ((ImageTypeViewHolder) holder).subtitle.setText(Html.fromHtml(object.getSubtitle()));
+        ((ImageTypeViewHolder) holder).date.setText(object.getDate());
+        ((ImageTypeViewHolder) holder).category.setText(object.getCategory());
 
         String url = object.getImageURL();
 
