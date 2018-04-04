@@ -6,16 +6,17 @@ package com.romain.mathieu.spreadscience.Model;
 
 public class CardData {
 
-    private String title, subtitle, imageURL, date, category;
+    private String title, subtitle, imageURL, date, category, content;
 
 
-    public CardData(String mTitle, String mSubtitle, String mImageURL, String date, String category) {
+    public CardData(String mTitle, String mSubtitle, String mImageURL, String date, String category, String content) {
 
         this.title = mTitle;
         this.subtitle = mSubtitle;
         this.imageURL = mImageURL;
         this.date = date;
         this.category = category;
+        this.content = content;
     }
 
     public String getImageURL() {
@@ -36,5 +37,9 @@ public class CardData {
 
     public String getCategory() {
         return category;
+    }
+
+    public String getContent() {
+        return content;
     }
 }
