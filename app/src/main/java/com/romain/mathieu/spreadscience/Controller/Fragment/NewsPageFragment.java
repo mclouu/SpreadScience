@@ -6,14 +6,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.romain.mathieu.spreadscience.Model.API.WPPostAPI;
 import com.romain.mathieu.spreadscience.Model.CardData;
 import com.romain.mathieu.spreadscience.Model.RetrofitRequest;
+import com.romain.mathieu.spreadscience.Model.SharedPeferencesUtils;
 import com.romain.mathieu.spreadscience.Model.WordPressService;
 import com.romain.mathieu.spreadscience.R;
 import com.romain.mathieu.spreadscience.View.MyAdapter;
@@ -33,7 +36,7 @@ public class NewsPageFragment extends Fragment {
 
     private LinearLayoutManager llm;
     private MyAdapter adapter;
-    private ArrayList<CardData> list;
+    public static ArrayList<CardData> list = new ArrayList<>();
     public static List<WPPostAPI> responseBody;
 
     RecyclerView recyclerView;
@@ -57,18 +60,21 @@ public class NewsPageFragment extends Fragment {
 
         context = container.getContext();
 
+        //SharedPeferencesUtils.getArrayList(context);
+
         progressBar = view.findViewById(R.id.progressBar);
         recyclerView = view.findViewById(R.id.recyclerView);
         llm = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(llm);
 
-        list = new ArrayList<>();
-
-        getRetrofit();
-
         adapter = new MyAdapter(list);
         recyclerView.setAdapter(adapter);
 
+
+        adapter.notifyDataSetChanged();
+
+
+        getRetrofit();
 
         // Inflate the layout for this fragment
 
@@ -101,24 +107,28 @@ public class NewsPageFragment extends Fragment {
                 for (int i = 0; i < response.body().size(); i++) {
 
                     String title = responseBody.get(i).getTitle().getRendered();
-                    String content = responseBody.get(i).getExcerpt().getRendered();
+                    String subTitle = responseBody.get(i).getExcerpt().getRendered();
+                    String content = responseBody.get(i).getContent().getRendered();
                     String featuredImage = responseBody.get(i).getEmbedded().getWpFeaturedmedia().get(0).getSourceUrl();
                     String date = responseBody.get(i).getDate();
                     date = date.replace("T", " - ");
                     String category = responseBody.get(i).getEmbedded().getWpTerm().get(0).get(0).getName();
 
+                    list.add(new CardData(title, subTitle, featuredImage, date, category, content));
 
-                    list.add(new CardData(title, content, featuredImage, date, category));
 
                 }
+
+
+                SharedPeferencesUtils.saveArrayList(context);
                 adapter.notifyDataSetChanged();
 
             }
 
             @Override
             public void onFailure(Call<List<WPPostAPI>> call, Throwable t) {
-
-                //TODO : Lecture hors ligne création d'une arraylist avec les sharedpref
+                Toast.makeText(context, "Lecture hors-ligne", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
 
             }
         });
