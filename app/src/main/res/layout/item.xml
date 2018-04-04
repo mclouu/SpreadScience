@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
             android:lines="3"
+            android:textAlignment="textStart"
             android:maxLines="3"
             android:paddingBottom="8dp"
             android:paddingStart="8dp"
@@ -50,7 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/content"
             android:paddingStart="8dp"
-            android:text="Biologie" />
+            android:text="Biologie"
+            android:textColor="@color/colorSS" />
 
         <TextView
             android:id="@+id/date"
@@ -59,7 +61,8 @@
             android:layout_alignParentEnd="true"
             android:layout_below="@id/content"
             android:paddingEnd="8dp"
-            android:text="31/03/2018" />
+            android:text="31/03/2018"
+            android:textColor="@color/colorSS" />
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>
