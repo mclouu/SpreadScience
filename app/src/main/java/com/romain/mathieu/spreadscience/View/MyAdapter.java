@@ -20,6 +20,8 @@ import com.romain.mathieu.spreadscience.R;
 
 import java.util.ArrayList;
 
+import static com.bumptech.glide.request.RequestOptions.centerCropTransform;
+
 /**
  * Created by romain on 17/03/2018.
  */
@@ -53,6 +55,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ArticleViewHolder>
 
         holder.title.setText(Html.fromHtml(object.getTitle()));
         holder.subtitle.setText(Html.fromHtml(object.getSubtitle()));
+
         holder.date.setText(object.getDate());
         holder.category.setText(object.getCategory());
 
@@ -60,6 +63,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ArticleViewHolder>
 
         Glide.with(context)
                 .load(url)
+                .apply(centerCropTransform())
                 .into(holder.imageView);
     }
 
@@ -100,6 +104,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ArticleViewHolder>
                     intent.putExtra("titleArticle", String.valueOf(Html.fromHtml(object.getTitle())));
                     intent.putExtra("subtitleArticle", String.valueOf(Html.fromHtml(object.getSubtitle())));
                     intent.putExtra("contentArticle", object.getContent());
+                    intent.putExtra("urlArticle", object.getUrl());
+                    intent.putExtra("imageUrl", object.getImageURL());
                     Log.e("TAG2", object.getContent());
                     context.startActivity(intent);
                 }
