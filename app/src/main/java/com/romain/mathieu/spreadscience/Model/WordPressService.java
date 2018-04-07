@@ -6,7 +6,10 @@ import com.romain.mathieu.spreadscience.Model.API.WPPostAPI;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 /**
  * Created by romain on 19/03/2018.
@@ -15,9 +18,18 @@ import retrofit2.http.GET;
 public interface WordPressService {
     MyConstant constant = new MyConstant();
 
+
     @GET("wp-json/wp/v2/posts?_embed")
     Call<List<WPPostAPI>> getPostInfo();
     /// to make call to dynamic URL
     //  @GET
     //  Call<List<WPPostAPI>> getPostInfo(@Url String url);
+
+    @GET("wp-json/wp/v2/posts/?categories={id}")
+    Call<List<WPPostAPI>> getPostCategories(@Path("id") int id);
+
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(constant.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
 }
