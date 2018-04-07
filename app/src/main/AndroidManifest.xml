@@ -19,6 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Controller.Activity.ArticleActivity" />
+        <activity android:name=".Controller.Activity.WebViewActivity" />
+        <activity android:name=".Controller.Activity.AboutActivity" />
     </application>
 
 </manifest>
