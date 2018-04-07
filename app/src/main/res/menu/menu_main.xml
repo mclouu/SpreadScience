@@ -3,11 +3,8 @@
 
 
     <item
-        android:id="@+id/menu_notif"
-        android:title="@string/notifications" />
-    <item
-        android:id="@+id/menu_help"
-        android:title="@string/Help" />
+        android:id="@+id/menu_setting"
+        android:title="@string/setting" />
     <item
         android:id="@+id/menu_about"
         android:title="@string/about" />
