@@ -6,6 +6,6 @@ package com.romain.mathieu.spreadscience.Model;
 
 public class MyConstant {
 
-    public String BASE_URL = "http://long-pixel.alwaysdata.net";
+    public String BASE_URL = "https://www.spreadscience.fr";
 
 }
