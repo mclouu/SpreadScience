@@ -16,7 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_alignParentTop="true"
-            android:background="@color/colorPrimaryDark"
             android:scaleType="centerCrop" />
 
         <TextView
@@ -37,11 +36,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
             android:lines="3"
-            android:textAlignment="textStart"
             android:maxLines="3"
             android:paddingBottom="8dp"
             android:paddingStart="8dp"
             android:text="Un animal est un être vivant, organisé en structures (cellules, tissus, organes ..) coordonnées formant un organisme, dérivera des eucaryotes et sera pluricellulaire. De plus, son type trophique est hétérotrophe, sa source de carbone provient donc de matière organique exogène. Un animal peut également effectuer des mouvements et répondre à un stimulus externe."
+            android:textAlignment="textStart"
             android:textColor="#666"
             android:textSize="14dp" />
 
