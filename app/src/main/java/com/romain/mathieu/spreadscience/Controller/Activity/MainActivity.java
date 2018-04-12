@@ -53,6 +53,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (SharedPeferencesUtils.containsArrayList(this)) {
+            SharedPeferencesUtils.getArrayList(this);
+        }
+
+
         Stetho.initializeWithDefaults(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -74,18 +79,16 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     }
 
+    //-----------------------
+    // PULL TO REFRESH
+    //-----------------------
+
     @Override
     public void onRefresh() {
-
-        swipeRefreshLayout.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                getRetrofit();
-                list.clear();
-                adapter.notifyDataSetChanged();
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        }, 2000);
+        progressBar.setVisibility(View.VISIBLE);
+        getRetrofit();
+        adapter.notifyDataSetChanged();
+        swipeRefreshLayout.setRefreshing(false);
 
     }
 
@@ -103,6 +106,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             @Override
             public void onResponse(@NonNull Call<List<WPPostAPI>> call, @NonNull Response<List<WPPostAPI>> response) {
                 responseBody = response.body();
+                if (list != null) {
+                    list.clear();
+                }
                 progressBar.setVisibility(View.GONE);
 
                 for (int i = 0; i < response.body().size(); i++) {
