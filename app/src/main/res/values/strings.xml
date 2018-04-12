@@ -9,4 +9,7 @@
     <!-- Article  -->
     <string name="lire_sur_le_site">Read on the site</string>
 
+    <!--Divers-->
+    <string name="action_search">search</string>
+
 </resources>
