@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.facebook.stetho.Stetho;
 import com.romain.mathieu.spreadscience.Model.API.WPPostAPI;
 import com.romain.mathieu.spreadscience.Model.CardData;
 import com.romain.mathieu.spreadscience.Model.SharedPeferencesUtils;
@@ -31,6 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+
 
     private LinearLayoutManager llm;
     private MyAdapter adapter;
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Stetho.initializeWithDefaults(this);
+
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -138,6 +142,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
         return true;
     }
 
@@ -151,7 +156,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 startActivity(intent2);
                 return true;
             case R.id.menu_search:
-
                 return true;
         }
         return super.onOptionsItemSelected(item);

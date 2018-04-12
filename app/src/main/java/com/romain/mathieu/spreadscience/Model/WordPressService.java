@@ -1,10 +1,12 @@
 package com.romain.mathieu.spreadscience.Model;
 
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.romain.mathieu.spreadscience.Model.API.WPPostAPI;
 
 import java.util.List;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -18,6 +20,10 @@ import retrofit2.http.Path;
 public interface WordPressService {
     MyConstant constant = new MyConstant();
 
+    OkHttpClient okHttpClient = new OkHttpClient.Builder()
+            .addNetworkInterceptor(new StethoInterceptor())
+            .build();
+
 
     @GET("wp-json/wp/v2/posts?_embed")
     Call<List<WPPostAPI>> getPostInfo();
@@ -30,6 +36,7 @@ public interface WordPressService {
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(constant.BASE_URL)
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 }
