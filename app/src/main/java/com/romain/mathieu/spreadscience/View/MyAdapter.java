@@ -69,7 +69,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ArticleViewHolder>
 
     @Override
     public int getItemCount() {
-        return mdatas.size();
+        if (mdatas != null) {
+            return mdatas.size();
+        }
+        return 0;
     }
 
 
