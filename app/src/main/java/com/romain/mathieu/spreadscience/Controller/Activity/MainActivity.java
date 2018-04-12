@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Stetho.initializeWithDefaults(this);
 
+        Stetho.initializeWithDefaults(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -142,7 +142,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
         return true;
     }
 
@@ -154,8 +153,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             case R.id.menu_about:
                 Intent intent2 = new Intent(MainActivity.this, AboutActivity.class);
                 startActivity(intent2);
-                return true;
-            case R.id.menu_search:
                 return true;
         }
         return super.onOptionsItemSelected(item);

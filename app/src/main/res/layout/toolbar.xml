@@ -18,7 +18,7 @@
         android:layout_height="50dp"
         android:layout_marginEnd="100dp"
         android:layout_marginStart="130dp"
-        android:src="@drawable/spreadscience_logo"/>
+        android:src="@drawable/spreadscience_logo" />
 
 
 </android.support.v7.widget.Toolbar>
