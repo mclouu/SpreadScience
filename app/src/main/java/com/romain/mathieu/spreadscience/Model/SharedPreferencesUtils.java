@@ -15,7 +15,7 @@ import static com.romain.mathieu.spreadscience.Controller.Activity.MainActivity.
  * Created by Romain on 06/02/2018.
  */
 
-public class SharedPeferencesUtils {
+public class SharedPreferencesUtils {
 
     private static final String MY_FILE_LIST = "ListSaved.xml";
 
