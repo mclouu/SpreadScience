@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.facebook.stetho.Stetho;
 import com.romain.mathieu.spreadscience.Model.API.WPPostAPI;
 import com.romain.mathieu.spreadscience.Model.CardData;
-import com.romain.mathieu.spreadscience.Model.SharedPeferencesUtils;
+import com.romain.mathieu.spreadscience.Model.SharedPreferencesUtils;
 import com.romain.mathieu.spreadscience.Model.WordPressService;
 import com.romain.mathieu.spreadscience.R;
 import com.romain.mathieu.spreadscience.View.MyAdapter;
@@ -52,15 +52,15 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (SharedPeferencesUtils.containsArrayList(this)) {
-            SharedPeferencesUtils.getArrayList(this);
-        }
-
-
-        Stetho.initializeWithDefaults(this);
         setContentView(R.layout.activity_main);
+
         ButterKnife.bind(this);
+        Stetho.initializeWithDefaults(this);
+
+
+        if (SharedPreferencesUtils.containsArrayList(this)) {
+            SharedPreferencesUtils.getArrayList(this);
+        }
 
 
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -68,8 +68,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setSupportActionBar(toolbar);
         toolbar.setTitle("toolBar");
 
-        progressBar = findViewById(R.id.progressBar);
-        recyclerView = findViewById(R.id.recyclerView);
         llm = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(llm);
 
@@ -128,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
                 }
                 adapter.notifyDataSetChanged();
-                SharedPeferencesUtils.saveArrayList(MainActivity.this);
+                SharedPreferencesUtils.saveArrayList(MainActivity.this);
             }
 
             @Override
