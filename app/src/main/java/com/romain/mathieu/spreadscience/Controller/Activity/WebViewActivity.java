@@ -9,13 +9,18 @@ import android.webkit.WebView;
 
 import com.romain.mathieu.spreadscience.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by romain on 04/04/2018.
  */
 
 public class WebViewActivity extends AppCompatActivity {
 
-    private WebView webView;
+    @BindView(R.id.webView)
+    WebView webView;
+
     private String url;
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -23,6 +28,8 @@ public class WebViewActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
+
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -32,7 +39,6 @@ public class WebViewActivity extends AppCompatActivity {
                 url = intent.getStringExtra("urlArticle");
             }
 
-            webView = findViewById(R.id.webView);
             webView.getSettings().setJavaScriptEnabled(true);
             webView.loadUrl(url);
         }
