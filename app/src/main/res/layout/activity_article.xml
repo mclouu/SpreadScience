@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -23,14 +24,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="8dp"
-                android:text="Sur YouTube, la science infuse"
-                android:textSize="20sp"
+                android:text="Microbiologie #1 : On pose les bases"
+                android:textColor="@color/colorSS"
+                android:textSize="19sp"
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/image_url"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layout_gravity="center"
                 android:scaleType="centerCrop" />
 
             <Button
@@ -42,11 +45,14 @@
                 android:text="@string/lire_sur_le_site"
                 android:textColor="@color/colorSS" />
 
-            <TextView
-                android:id="@+id/article_content"
+            <WebView
+                android:id="@+id/test"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp" />
+                android:background="@android:color/transparent"
+                tools:ignore="WebViewLayout">
+
+            </WebView>
 
 
         </LinearLayout>
